@@ -1,3 +1,4 @@
+
 const prompt = require('prompt-sync')({sigint:true});
 let time = 6;
 let action = '';
@@ -7,13 +8,15 @@ let daysCatch =  {
     totalValue: 0,
     caughtFish:[]
     };
+
+   
 console.log("You've gone fishing! Try to maximize the value of your caught fish. You can fish");
 console.log("for six hours (till 12:00pm) and can catch at most 10 lbs of fish.");
 while(time <= 12){
-if(time < 12){
+if(time < 12 && daysCatch.totalWeight < 10){
     console.log(`The time is ${time}:00am. So far you've caught:`);
     (`${daysCatch.totalFishCaught} fish, ${daysCatch.totalWeight} lbs, $${daysCatch.totalValue}`)
-    let tempCatch = generatFish();
+    let tempCatch = generateFish(daysCatch);
     console.log(`You caught a "${tempCatch.name}" weighing ${tempCatch.weight} lbs`)
     console.log(`and valued at $${tempCatch.value}`);
     console.log("Your action: [c]atch or [r]elease?"); 
@@ -25,12 +28,6 @@ if(time < 12){
     console.log("==========================================");
 }
 else if(time >= 12)
-
-
-
-
-
-
 
 time++;
 }
@@ -52,48 +49,45 @@ time++;
 
 
 
-
-function generateFish(){
-let name = createFishName()
-let fish = {
-    name:name,
-    weight:weight,
-    value:value
-}
-
-return fish
-}
-
-
-
-// for(let i = 0; i < 100; i++){
-//     let weight = Math.floor((Math.random() * 4)+ 1)
-//     console.log(createFishName(weight));
-// }
-
-
-
-
-
-
-
-
-
-
-
-
-
 function addToDaysCatch(fish){
     daysCatch.caughtFish.push(fish);
-    daysCatch.totalWeight = daysCatch.totalWeight + fish.weight;
-    daysCatch.totalValue = daysCatch.totalValue + fish.value; 
+    daysCatch.totalWeight = daysCatch.totalWeight + Number(fish.weight);
+    daysCatch.totalValue = daysCatch.totalValue + Number(fish.value); 
+    daysCatch.totalFishCaught = daysCatch.totalFishCaught + 1;
     return daysCatch;
 }
 
+function generateFish(daysCatch){
+    let weight = 0;
+    let value = 0;
+    //let w2 = (Math.random().toPrecision(2));
+    if(daysCatch.totalWeight >= 9 && daysCatch.totalWeight <= 9.5){
+        weight = .2;
+        value = .50;
+    }
+    else if(daysCatch.totalWeight > 9.5 && daysCatch.totalWeight < 10){
+        weight = .1
+        value = .25;
+    }
+    
+    weight =  ((Math.random() * 5)+ 1).toPrecision(3);
+    
+    if(weight < 3){
+        value = (weight * 2.2).toPrecision(3)
+    }
+    else if(weight >= 3){
+        value = (weight * 3.3).toPrecision(3)
+    }
 
+    let name = createFishName(weight);
+    let fish = {
+    name:name,
+    weight:weight,
+    value:value
+    }
 
-
-
+    return fish
+}
 
 // Creates fish's name
 function createFishName(weight) {
@@ -104,7 +98,7 @@ function createFishName(weight) {
     const big = ["Jumbo", "Huge", "Enormous"]
     const small = ["Lean", "Tiny","Mini"]
     const descriptor = ["Slimy", "Scaly", "Fresh"]
-    const fishTypes = ["Salmon", "Tuna", "Tilapia", "Cod", "Red Sapper", "Flounder", "Cat Fish", "Trout"]
+    const fishTypes = ["Salmon", "Tuna", "Tilapia", "Cod", "Red Snapper", "Flounder", "Cat Fish", "Trout"]
 
     // Chooses size (big or small) and an adjective relative to fish's size
     if(weight >= 3){
@@ -172,4 +166,13 @@ function createFishName(weight) {
 
 }
 
+
+for(let i = 0; i < 10; i++){
+    let temp = generateFish(daysCatch)
+    console.log(temp);
+    addToDaysCatch(temp)
+
+}
+
+console.log(daysCatch);
 
