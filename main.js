@@ -1,5 +1,5 @@
 const prompt = require('prompt-sync')({sigint:true});
-let fishing = true;
+let time = 6;
 let action = '';
 let daysCatch =  {
     totalFishCaught:0,
@@ -9,24 +9,22 @@ let daysCatch =  {
     };
 console.log("You've gone fishing! Try to maximize the value of your caught fish. You can fish");
 console.log("for six hours (till 12:00pm) and can catch at most 10 lbs of fish.");
-console.log("==========================================");
-console.log("The time is 6:00am. So far you've caught:");
-(`${daysCatch.totalFishCaught} fish, ${daysCatch.totalWeight} lbs, $${daysCatch.totalValue}`)
-let tempCatch = generatFish();
-console.log(`You caught a "${tempCatch.name}" weighing ${tempCatch.weight} lbs`)
-console.log(`and valued at $${tempCatch.value}`);
-console.log("Your action: [c]atch or [r]elease?"); 
-action = prompt("> ")
-
-You chose to keep the fish.
-
-==========================================
-
-
-
-
-while(fishing){
-
+while(time <= 12){
+if(time < 12){
+    console.log(`The time is ${time}:00am. So far you've caught:`);
+    (`${daysCatch.totalFishCaught} fish, ${daysCatch.totalWeight} lbs, $${daysCatch.totalValue}`)
+    let tempCatch = generatFish();
+    console.log(`You caught a "${tempCatch.name}" weighing ${tempCatch.weight} lbs`)
+    console.log(`and valued at $${tempCatch.value}`);
+    console.log("Your action: [c]atch or [r]elease?"); 
+    action = prompt("> ")
+    if(action === 'c'){
+        addToDaysCatch(tempCatch);
+        console.log("You chose to keep the fish.");
+    }
+    console.log("==========================================");
+}
+else if(time >= 12)
 
 
 
@@ -34,7 +32,7 @@ while(fishing){
 
 
 
-
+time++;
 }
 
 
