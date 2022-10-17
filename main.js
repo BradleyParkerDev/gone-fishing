@@ -87,11 +87,9 @@ The fish's second descriptor is based on its appearance:
 The fish is then randomly given a type:
     const fishTypes = ["Salmon", "Tuna", "Tilapia", "Cod", "Red Snapper", 
     "Flounder", "Cat Fish", "Trout"]
+-----------------------------------------------------------------------------
 
 */
-
-
-
 
 
 // adds catch to daysCatch
