@@ -198,8 +198,3 @@ function createFishName(weight) {
     return fishName;
 
 }
-
-
-// for(let i = 0; i < 100; i++){
-//     console.log(((Math.random()*6)+.1).toFixed(2))
-// }
