@@ -105,11 +105,11 @@ function generateFish(){
     let value = 0;
     let weight =  Number((Math.random() * 6)+ .25).toFixed(2)
     
-    if(weight < 3){
-        value = (weight * 5).toFixed(2)
+    if(weight < 1){
+        value = (weight * 8).toFixed(2)
     }
-    else if(weight >= 3){
-        value = (weight * 10).toFixed(2)
+    else if(weight >= 1){
+        value = (weight * 7).toFixed(2)
     }
     
     let name = createFishName(weight);
@@ -134,7 +134,7 @@ function createFishName(weight) {
     const fishTypes = ["Salmon", "Tuna", "Tilapia", "Cod", "Red Snapper", "Flounder", "Cat Fish", "Trout"]
 
     // Chooses size (big or small) and an adjective relative to fish's size
-    if(weight >= 3){
+    if(weight >= 1){
         if(randSizeName === 1){
             size = big[0];
         }
@@ -145,7 +145,7 @@ function createFishName(weight) {
             size = big[2];
         }
     }
-    else if(weight < 3){
+    else if(weight < 1){
         if(randSizeName === 1){
             size = small[0];
         }
