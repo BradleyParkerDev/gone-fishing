@@ -109,7 +109,7 @@ function generateFish(){
         value = (weight * 8).toFixed(2)
     }
     else if(weight >= 1){
-        value = (weight * 7).toFixed(2)
+        value = (weight * 13).toFixed(2)
     }
     
     let name = createFishName(weight);
