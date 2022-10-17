@@ -1,7 +1,6 @@
 
 const prompt = require('prompt-sync')({sigint:true});
 let time = 6;
-let overWeight = false;
 let action = '';
 
 // This object holds all of your fish
