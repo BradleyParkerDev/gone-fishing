@@ -16,8 +16,6 @@ console.log("You've gone fishing! Try to maximize the value of your caught fish.
 console.log("for six hours (till 12:00pm) and can catch at most 10 lbs of fish.");
 console.log("\n==========================================\n");
 
-
-
 //Fishing loop
 while(time <= 12){
     
