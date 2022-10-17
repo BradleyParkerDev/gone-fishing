@@ -1,4 +1,3 @@
-
 const prompt = require('prompt-sync')({sigint:true});
 let time = 6;
 let action = '';
